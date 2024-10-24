@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
-import { DirectionProvider } from "@radix-ui/react-direction";
+
 import Providers from "@/providers";
+import "./globals.css";
+import { AppSidebar } from "@/components";
+import { SidebarTrigger } from "@/components/ui";
 
 const dana = localFont({
   src: "./fonts/DanaVF.woff",
@@ -21,7 +23,13 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body className={`${dana.className} antialiased`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <AppSidebar />
+          <main className="px-4 mt-4">
+            <SidebarTrigger />
+            <div className="mt-2 mx-1.5">{children}</div>
+          </main>
+        </Providers>
       </body>
     </html>
   );
